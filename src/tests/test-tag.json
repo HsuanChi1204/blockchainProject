@@ -1,0 +1,11 @@
+{
+  "data": {
+    "productId": "PROD123",
+    "brandId": "BRAND456",
+    "manufacturingDate": "2025-04-01T14:53:37.885Z",
+    "batchNumber": "BATCH789",
+    "timestamp": 1743519217886
+  },
+  "signature": "ae275143e02ad3d60f223718c5dc41fccf479ec3840c35e6c6dfb86da3072b793ff5000f8d21ebb8fe23c858d172b190f207a0aa9ba9e8a0a7eebfd0043dcc00",
+  "publicKey": "e6fa56ac1c0b31755021ee125cf1c25df94a3819d32770805a828f7199e4d0a4"
+}
