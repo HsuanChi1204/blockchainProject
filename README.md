@@ -1,13 +1,126 @@
-# Sample Hardhat Project
+# Blockchain-Based Supply Chain Authentication for Luxury and Collectible Goods
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+## Overview
+This project implements a blockchain-based authentication system for luxury and collectible goods, addressing the global counterfeit market problem estimated at over $1.7 trillion annually. The system combines blockchain technology, IPFS storage, and Ed25519 digital signatures to provide a secure and verifiable authentication solution.
 
-Try running some of the following tasks:
+## Key Features
+- **Blockchain Integration**: Uses Cardona zkEVM for secure and efficient transaction processing
+- **IPFS Storage**: Decentralized storage for product information
+- **Ed25519 Digital Signatures**: Secure authentication mechanism
+- **NFC Tag Integration**: Physical product authentication
+- **Smart Contract Verification**: Tamper-proof product registration and verification
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
+## Problem Statement
+The global counterfeit market poses significant challenges for luxury goods authentication:
+- Traditional paper certifications can be forged
+- Laser labels and NFC chips can be counterfeited
+- Customers lack reliable means to verify product authenticity
+- Current systems rely heavily on human experts
+
+## Solution
+Our system provides:
+1. **Secure Product Registration**:
+   - Products registered on blockchain with unique identifiers
+   - Production and sales history stored on IPFS
+   - Ed25519 digital signatures for authentication
+
+2. **Customer Verification**:
+   - NFC tag scanning for product information
+   - Digital signature verification
+   - Blockchain-based authenticity confirmation
+
+## Technical Stack
+- **Blockchain**: Cardona zkEVM
+- **Storage**: IPFS (via Pinata)
+- **Cryptography**: Ed25519 digital signatures
+- **Smart Contracts**: Solidity
+- **Frontend**: React.js
+- **Backend**: Node.js
+
+## Installation
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- Git
+
+### Setup
+1. Clone the repository:
+```bash
+git clone https://github.com/HsuanChi1204/blockchainProject.git
+cd blockchainProject
 ```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Configure environment variables:
+```bash
+cp .env.example .env
+```
+Edit `.env` with your configuration:
+- Private key for blockchain transactions
+- Pinata API keys for IPFS
+- Other necessary credentials
+
+## Usage
+
+### Product Registration
+1. Register a brand:
+```bash
+npx hardhat run scripts/product-test.js --network cardona
+```
+
+2. Register a product:
+```bash
+npx hardhat run scripts/product-test.js --network cardona
+```
+
+### Verification
+1. Scan NFC tag
+2. Verify digital signature
+3. Check blockchain record
+4. Confirm product authenticity
+
+## Project Structure
+```
+blockchainProject/
+├── contracts/           # Smart contracts
+├── scripts/            # Deployment and test scripts
+├── src/               # Source code
+│   ├── crypto/        # Cryptographic functions
+│   ├── ipfs/          # IPFS integration
+│   └── nfc/           # NFC tag handling
+├── test/              # Test files
+└── docs/             # Documentation
+```
+
+## Testing
+Run the test suite:
+```bash
+npx hardhat test
+```
+
+## Contributing
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Authors
+- Hsuan-Chi Chang (hsuanchi@vt.edu)
+- Wei-Ju Li (weijuli@vt.edu)
+
+## Acknowledgments
+- Virginia Tech
+- Cardona zkEVM team
+- Pinata for IPFS services
+
+## References
+[1] Global Counterfeit Market Statistics, 2025
