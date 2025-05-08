@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Authentication System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="custom-style.css" rel="stylesheet">
+    <style>
+        .container { max-width: 800px; margin-top: 50px; }
+        .form-group { margin-bottom: 20px; }
+        .specifications-group { margin-left: 20px; }
+        .warranty-group { margin-left: 20px; }
+        .verification-result { margin-top: 20px; }
+        .api-logs { margin-top: 40px; }
+        .log-entry { margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .product-form-2col { display: flex; }
+        .col { flex: 1; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container position-relative">
+        <button id="showLogsBtn" class="btn btn-secondary position-absolute top-0 end-0 mt-3 me-3">API Logs</button>
+        <ul class="nav nav-tabs mb-4" id="mainTabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="tabBrand" href="#">Register Brand</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabProduct" href="#">Register Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabVerify" href="#">Verify Product</a>
+            </li>
+        </ul>
+        <div id="tabContentBrand">
+            <!-- 品牌註冊表單原本內容 -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2>Register Brand</h2>
+                </div>
+                <div class="card-body">
+                    <form id="brandForm">
+                        <div class="form-group">
+                            <label for="brandId">Brand ID</label>
+                            <input type="text" class="form-control" id="brandId" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register Brand</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="tabContentProduct" style="display:none">
+            <!-- 產品註冊表單原本內容，改為兩欄排版 -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2>Register Product</h2>
+                </div>
+                <div class="card-body">
+                    <form id="productForm">
+                        <div class="product-form-2col">
+                            <div class="col">
+                                <!-- 必填欄位 -->
+                                <h4>Required Information</h4>
+                                <div class="form-group">
+                                    <label for="productId">Product ID</label>
+                                    <input type="text" class="form-control" id="productId" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productBrandId">Brand ID</label>
+                                    <input type="text" class="form-control" id="productBrandId" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productName">Product Name</label>
+                                    <input type="text" class="form-control" id="productName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="serialNumber">Serial Number</label>
+                                    <input type="text" class="form-control" id="serialNumber" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="manufactureDate">Manufacture Date</label>
+                                    <input type="date" class="form-control" id="manufactureDate" required>
+                                </div>
+                                <!-- 選填欄位（左） -->
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control" id="description"></textarea>
+                                </div>
+                                <!-- 在 Register Product 表單左側必填欄位下方新增圖片上傳 -->
+                                <div class="form-group">
+                                    <label for="productImage">Product Image</label>
+                                    <input type="file" class="form-control" id="productImage" name="image" accept="image/*">
+                                    <div id="productImagePreview" class="mt-2"></div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- 選填欄位（右） -->
+                                <h4 class="mt-4">Additional Information</h4>
+                                <div class="form-group">
+                                    <label for="price">Price</label>
+                                    <input type="number" class="form-control" id="price">
+                                </div>
+                                <div class="form-group">
+                                    <label for="model">Model</label>
+                                    <input type="text" class="form-control" id="model">
+                                </div>
+                                <!-- 規格 -->
+                                <h5 class="mt-3">Specifications</h5>
+                                <div class="specifications-group">
+                                    <div class="form-group">
+                                        <label for="material">Material</label>
+                                        <input type="text" class="form-control" id="material">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="size">Size</label>
+                                        <input type="text" class="form-control" id="size">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="color">Color</label>
+                                        <input type="text" class="form-control" id="color">
+                                    </div>
+                                </div>
+                                <!-- 保固 -->
+                                <h5 class="mt-3">Warranty</h5>
+                                <div class="warranty-group">
+                                    <div class="form-group">
+                                        <label for="warrantyPeriod">Warranty Period</label>
+                                        <input type="text" class="form-control" id="warrantyPeriod">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="warrantyStartDate">Start Date</label>
+                                        <input type="date" class="form-control" id="warrantyStartDate">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Register Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="tabContentVerify" style="display:none">
+            <!-- 產品驗證表單原本內容 -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2>Verify Product</h2>
+                </div>
+                <div class="card-body">
+                    <form id="verifyForm">
+                        <div class="form-group">
+                            <label for="verifyProductId">Product ID</label>
+                            <input type="text" class="form-control" id="verifyProductId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="verifyBrandId">Brand ID</label>
+                            <input type="text" class="form-control" id="verifyBrandId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="verifySerialNumber">Serial Number</label>
+                            <input type="text" class="form-control" id="verifySerialNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="verifySignature">Signature</label>
+                            <input type="text" class="form-control" id="verifySignature" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="verifyTagPublicKey">Tag Public Key</label>
+                            <input type="text" class="form-control" id="verifyTagPublicKey" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Verify Product</button>
+                    </form>
+                    <div id="verificationResult" class="verification-result"></div>
+                </div>
+            </div>
+        </div>
+        <!-- API Logs Modal 保持不變 -->
+        <div id="apiLogsModal" class="api-logs-modal d-none">
+            <div class="api-logs-content">
+                <button id="closeLogsBtn" class="btn-close float-end"></button>
+                <h2>API Logs</h2>
+                <button id="refreshLogs" class="btn btn-secondary mb-3">Refresh Logs</button>
+                <div id="apiLogs"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3001/api';
+
+        // 品牌註冊
+        document.getElementById('brandForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const brandId = document.getElementById('brandId').value;
+            try {
+                const response = await fetch(`${API_BASE_URL}/brands`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ brandId })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    alert('Brand registered successfully!');
+                } else {
+                    alert('Error: ' + (data.error || 'Failed to register brand'));
+                }
+                refreshLogs();
+            } catch (error) {
+                alert('Error registering brand: ' + error.message);
+            }
+        });
+
+        // 產品註冊
+        document.getElementById('productForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const productData = {
+                // 必填欄位
+                productId: document.getElementById('productId').value,
+                brandId: document.getElementById('productBrandId').value,
+                name: document.getElementById('productName').value,
+                serialNumber: document.getElementById('serialNumber').value,
+                manufactureDate: document.getElementById('manufactureDate').value,
+                // 選填欄位
+                description: document.getElementById('description').value,
+                price: document.getElementById('price').value,
+                model: document.getElementById('model').value,
+                // 規格
+                specifications: {
+                    material: document.getElementById('material').value,
+                    size: document.getElementById('size').value,
+                    color: document.getElementById('color').value
+                },
+                // 保固
+                warranty: {
+                    period: document.getElementById('warrantyPeriod').value,
+                    startDate: document.getElementById('warrantyStartDate').value
+                }
+            };
+            const imageInput = document.getElementById('productImage');
+            const formData = new FormData();
+            formData.append('productData', JSON.stringify(productData));
+            if (imageInput.files[0]) {
+                formData.append('image', imageInput.files[0]);
+            }
+            try {
+                // 1. 上傳到 IPFS
+                const ipfsResponse = await fetch(`${API_BASE_URL}/products/ipfs`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const ipfsData = await ipfsResponse.json();
+                if (!ipfsData.success) {
+                    throw new Error(ipfsData.error || 'Failed to upload to IPFS');
+                }
+                // 2. 註冊到區塊鏈
+                const registerResponse = await fetch(`${API_BASE_URL}/products`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        productId: ipfsData.productId,
+                        brandId: ipfsData.brandId,
+                        serialNumber: ipfsData.serialNumber,
+                        ipfsCid: ipfsData.ipfsHash
+                    })
+                });
+                const registerData = await registerResponse.json();
+                if (!registerData.success) {
+                    throw new Error(registerData.error || 'Failed to register product');
+                }
+                alert(`Product registered successfully!\n\nNFC Tag Data:\n${JSON.stringify(ipfsData.nfcData, null, 2)}`);
+                refreshLogs();
+            } catch (error) {
+                alert('Error registering product: ' + error.message);
+            }
+        });
+
+        // 產品驗證
+        document.getElementById('verifyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const productId = document.getElementById('verifyProductId').value;
+            const brandId = document.getElementById('verifyBrandId').value;
+            const serialNumber = document.getElementById('verifySerialNumber').value;
+            const signature = document.getElementById('verifySignature').value;
+            const tagPublicKey = document.getElementById('verifyTagPublicKey').value;
+            const resultDiv = document.getElementById('verificationResult');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/products/${productId}/verify`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ brandId, serialNumber, signature, tagPublicKey })
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    const productInfo = data.productInfo;
+                    let imageHtml = '';
+                    if (productInfo.productData && productInfo.productData.imageUrl) {
+                        imageHtml = `<img src='${productInfo.productData.imageUrl}' alt='Product Image' style='max-width:180px;max-height:180px;border-radius:8px;box-shadow:0 2px 8px #ccc;'>`;
+                    }
+                    resultDiv.innerHTML = `
+                        <div class="verify-2col-box">
+                            <div class="verify-2col-left">
+                                <div class='mb-2'>${imageHtml}</div>
+                                <h4 class="mb-2">Verification Status:
+                                    <span class="badge ${productInfo.signatureValid && productInfo.brandIdMatch && productInfo.serialNumberMatch ? 'bg-success' : 'bg-warning'}">
+                                        ${productInfo.signatureValid && productInfo.brandIdMatch && productInfo.serialNumberMatch ? 'Verified' : 'Warning'}
+                                    </span>
+                                </h4>
+                                <ul class="list-unstyled mb-2">
+                                    <li><strong>Signature Valid:</strong> ${productInfo.signatureValid ? '✓' : '✗'}</li>
+                                    <li><strong>Brand ID Match:</strong> ${productInfo.brandIdMatch ? '✓' : '✗'}</li>
+                                    <li><strong>Serial Number Match:</strong> ${productInfo.serialNumberMatch ? '✓' : '✗'}</li>
+                                </ul>
+                                <div class="small text-muted">Registration Time: ${new Date(productInfo.registrationTime).toLocaleString()}</div>
+                                <div class="small text-muted">Status: ${productInfo.isActive ? 'Active' : 'Inactive'}</div>
+                                <div class="small"><a href="https://gateway.pinata.cloud/ipfs/${productInfo.ipfsCid}" target="_blank">Link</a></div>
+                            </div>
+                            <div class="verify-2col-right">
+                                <h5>Product Info</h5>
+                                <ul class="list-unstyled">
+                                    <li><strong>Product ID:</strong> ${productInfo.productData.productId}</li>
+                                    <li><strong>Brand ID:</strong> ${productInfo.productData.brandId}</li>
+                                    <li><strong>Name:</strong> ${productInfo.productData.name}</li>
+                                    <li><strong>Serial Number:</strong> ${productInfo.productData.serialNumber}</li>
+                                    <li><strong>Manufacture Date:</strong> ${productInfo.productData.manufactureDate}</li>
+                                    <li><strong>Description:</strong> ${productInfo.productData.description || 'N/A'}</li>
+                                    <li><strong>Price:</strong> ${productInfo.productData.price || 'N/A'}</li>
+                                    <li><strong>Model:</strong> ${productInfo.productData.model || 'N/A'}</li>
+                                </ul>
+                                <h6 class="mt-2">Specifications</h6>
+                                <ul class="list-unstyled">
+                                    <li><strong>Material:</strong> ${productInfo.productData.specifications?.material || 'N/A'}</li>
+                                    <li><strong>Size:</strong> ${productInfo.productData.specifications?.size || 'N/A'}</li>
+                                    <li><strong>Color:</strong> ${productInfo.productData.specifications?.color || 'N/A'}</li>
+                                </ul>
+                                <h6 class="mt-2">Warranty</h6>
+                                <ul class="list-unstyled">
+                                    <li><strong>Period:</strong> ${productInfo.productData.warranty?.period || 'N/A'}</li>
+                                    <li><strong>Start Date:</strong> ${productInfo.productData.warranty?.startDate || 'N/A'}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-danger">
+                            Product verification failed: ${data.error || 'Unknown error'}
+                        </div>
+                    `;
+                }
+                refreshLogs();
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        Error verifying product: ${error.message}
+                    </div>
+                `;
+            }
+        });
+
+        // 刷新 API 日誌
+        async function refreshLogs() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/logs`);
+                const data = await response.json();
+                const logsDiv = document.getElementById('apiLogs');
+                if (data.success) {
+                    // 最新的在最上面
+                    const logs = data.logs.slice().reverse();
+                    logsDiv.innerHTML = logs.map(log => `
+                        <div class="log-entry">
+                            <div><strong>${new Date(log.timestamp).toLocaleString()}</strong> <span style="color:#888;">${log.endpoint}</span></div>
+                            <div class="small"><span style="color:#666;">Request:</span> <code>${JSON.stringify(log.request)}</code></div>
+                            <div class="small"><span style="color:#666;">Response:</span> <code>${JSON.stringify(log.response)}</code></div>
+                        </div>
+                    `).join('');
+                } else {
+                    logsDiv.innerHTML = '<div class="alert alert-warning">No logs available</div>';
+                }
+            } catch (error) {
+                console.error('Error fetching logs:', error);
+                document.getElementById('apiLogs').innerHTML = `
+                    <div class="alert alert-danger">
+                        Error fetching logs: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // 初始載入日誌
+        refreshLogs();
+
+        // 綁定刷新按鈕
+        document.getElementById('refreshLogs').addEventListener('click', refreshLogs);
+
+        // API Logs Modal 控制
+        const showLogsBtn = document.getElementById('showLogsBtn');
+        const apiLogsModal = document.getElementById('apiLogsModal');
+        const closeLogsBtn = document.getElementById('closeLogsBtn');
+        showLogsBtn.addEventListener('click', () => {
+            apiLogsModal.classList.remove('d-none');
+            refreshLogs();
+        });
+        closeLogsBtn.addEventListener('click', () => {
+            apiLogsModal.classList.add('d-none');
+        });
+
+        // 頁籤切換
+        document.getElementById('tabBrand').addEventListener('click', function(e) {
+            e.preventDefault();
+            this.classList.add('active');
+            document.getElementById('tabProduct').classList.remove('active');
+            document.getElementById('tabVerify').classList.remove('active');
+            document.getElementById('tabContentBrand').style.display = '';
+            document.getElementById('tabContentProduct').style.display = 'none';
+            document.getElementById('tabContentVerify').style.display = 'none';
+        });
+        document.getElementById('tabProduct').addEventListener('click', function(e) {
+            e.preventDefault();
+            this.classList.add('active');
+            document.getElementById('tabBrand').classList.remove('active');
+            document.getElementById('tabVerify').classList.remove('active');
+            document.getElementById('tabContentBrand').style.display = 'none';
+            document.getElementById('tabContentProduct').style.display = '';
+            document.getElementById('tabContentVerify').style.display = 'none';
+        });
+        document.getElementById('tabVerify').addEventListener('click', function(e) {
+            e.preventDefault();
+            this.classList.add('active');
+            document.getElementById('tabBrand').classList.remove('active');
+            document.getElementById('tabProduct').classList.remove('active');
+            document.getElementById('tabContentBrand').style.display = 'none';
+            document.getElementById('tabContentProduct').style.display = 'none';
+            document.getElementById('tabContentVerify').style.display = '';
+        });
+
+        document.getElementById('productImage').addEventListener('change', function(e) {
+            const preview = document.getElementById('productImagePreview');
+            preview.innerHTML = '';
+            if (this.files && this.files[0]) {
+                const url = URL.createObjectURL(this.files[0]);
+                preview.innerHTML = `<img src='${url}' style='max-width:120px;max-height:120px;border-radius:8px;box-shadow:0 2px 8px #ccc;'>`;
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,231 @@
+/* 色盤定義 */
+:root {
+  --morning-dew: #F0EFE6;
+  --overcast: #EAEAEA;
+  --early-dusk: #C6C9D2;
+  --tan-parchment: #DCCFC1;
+  --almond-dust: #B8AEA8;
+  --coffee-grounds: #393831;
+}
+
+body {
+  background: var(--morning-dew);
+  font-family: 'Segoe UI', 'Noto Sans TC', Arial, sans-serif;
+  color: var(--coffee-grounds);
+}
+
+.container {
+  background: var(--overcast);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(56, 56, 49, 0.08);
+  padding: 32px 24px 24px 24px;
+}
+
+h1, h2, h4, h5 {
+  color: var(--coffee-grounds);
+  font-weight: 700;
+}
+
+.card {
+  background: var(--tan-parchment);
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px 0 rgba(184, 174, 168, 0.10);
+}
+
+.card-header {
+  background: var(--almond-dust);
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1.5px solid var(--early-dusk);
+  background: var(--overcast);
+  color: var(--coffee-grounds);
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+.form-control:focus {
+  border-color: var(--early-dusk);
+  box-shadow: 0 0 0 2px var(--early-dusk);
+}
+
+.btn-primary {
+  background: var(--coffee-grounds);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+}
+.btn-primary:hover {
+  background: var(--almond-dust);
+  color: var(--coffee-grounds);
+}
+
+.btn-secondary {
+  background: var(--early-dusk);
+  color: var(--coffee-grounds);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.btn-secondary:hover {
+  background: var(--almond-dust);
+  color: var(--coffee-grounds);
+}
+
+/* API Logs Modal */
+.api-logs-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(200, 200, 200, 0.25);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.api-logs-content {
+  background: var(--overcast);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(56, 56, 49, 0.18);
+  padding: 32px 24px 24px 24px;
+  width: 90vw;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+.d-none { display: none !important; }
+
+/* log entry */
+.log-entry {
+  background: var(--tan-parchment);
+  border: 1px solid var(--almond-dust);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+}
+
+/* 驗證結果縮小設計 */
+.verification-result .alert {
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.verification-result h4, .verification-result h5 {
+  font-size: 1.1rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* 輸入區塊設計感提升 */
+.form-group label {
+  font-weight: 600;
+  color: var(--coffee-grounds);
+  margin-bottom: 4px;
+}
+.form-group input, .form-group textarea {
+  background: var(--overcast);
+  border: 1.5px solid var(--early-dusk);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+/* 其他細節微調 */
+.specifications-group, .warranty-group {
+  background: var(--overcast);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--overcast);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--almond-dust);
+  border-radius: 8px;
+}
+
+/* 兩欄排版 for Register Product */
+.product-form-2col {
+  display: flex;
+  gap: 32px;
+}
+.product-form-2col .col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* label 與 input 距離拉近，字體縮小 */
+.form-group label {
+  margin-bottom: 2px;
+  font-size: 0.98rem;
+}
+.form-group input, .form-group textarea, .form-group select {
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+}
+
+.card, .card-header, .card-body {
+  font-size: 0.97rem;
+}
+
+.nav-tabs .nav-link {
+  color: var(--coffee-grounds);
+  font-size: 1rem;
+  padding: 8px 18px;
+}
+
+@media (max-width: 900px) {
+  .product-form-2col {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.verify-2col-box {
+  display: flex;
+  gap: 32px;
+  background: var(--overcast);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px 0 rgba(184, 174, 168, 0.10);
+  padding: 24px 18px;
+  margin-top: 12px;
+}
+.verify-2col-left {
+  flex: 0 0 220px;
+  text-align: center;
+  border-right: 1.5px solid var(--early-dusk);
+  padding-right: 18px;
+}
+.verify-2col-right {
+  flex: 1 1 0;
+  padding-left: 18px;
+}
+@media (max-width: 700px) {
+  .verify-2col-box {
+    flex-direction: column;
+    padding: 12px 6px;
+  }
+  .verify-2col-left {
+    border-right: none;
+    border-bottom: 1.5px solid var(--early-dusk);
+    padding-right: 0;
+    padding-bottom: 12px;
+  }
+  .verify-2col-right {
+    padding-left: 0;
+    padding-top: 12px;
+  }
+} 
