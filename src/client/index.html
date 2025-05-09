@@ -34,58 +34,58 @@
         </ul>
         <div id="tabContentBrand">
             <!-- 品牌註冊表單原本內容 -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h2>Register Brand</h2>
-                </div>
-                <div class="card-body">
-                    <form id="brandForm">
-                        <div class="form-group">
-                            <label for="brandId">Brand ID</label>
-                            <input type="text" class="form-control" id="brandId" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Register Brand</button>
-                    </form>
-                </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2>Register Brand</h2>
             </div>
+            <div class="card-body">
+                <form id="brandForm">
+                    <div class="form-group">
+                        <label for="brandId">Brand ID</label>
+                        <input type="text" class="form-control" id="brandId" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register Brand</button>
+                </form>
+            </div>
+        </div>
         </div>
         <div id="tabContentProduct" style="display:none">
             <!-- 產品註冊表單原本內容，改為兩欄排版 -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h2>Register Product</h2>
-                </div>
-                <div class="card-body">
-                    <form id="productForm">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2>Register Product</h2>
+            </div>
+            <div class="card-body">
+                <form id="productForm">
                         <div class="product-form-2col">
                             <div class="col">
-                                <!-- 必填欄位 -->
-                                <h4>Required Information</h4>
-                                <div class="form-group">
-                                    <label for="productId">Product ID</label>
-                                    <input type="text" class="form-control" id="productId" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="productBrandId">Brand ID</label>
-                                    <input type="text" class="form-control" id="productBrandId" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="productName">Product Name</label>
-                                    <input type="text" class="form-control" id="productName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="serialNumber">Serial Number</label>
-                                    <input type="text" class="form-control" id="serialNumber" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="manufactureDate">Manufacture Date</label>
-                                    <input type="date" class="form-control" id="manufactureDate" required>
-                                </div>
+                    <!-- 必填欄位 -->
+                    <h4>Required Information</h4>
+                    <div class="form-group">
+                        <label for="productId">Product ID</label>
+                        <input type="text" class="form-control" id="productId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productBrandId">Brand ID</label>
+                        <input type="text" class="form-control" id="productBrandId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serialNumber">Serial Number</label>
+                        <input type="text" class="form-control" id="serialNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="manufactureDate">Manufacture Date</label>
+                        <input type="date" class="form-control" id="manufactureDate" required>
+                    </div>
                                 <!-- 選填欄位（左） -->
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea class="form-control" id="description"></textarea>
-                                </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description"></textarea>
+                    </div>
                                 <!-- 在 Register Product 表單左側必填欄位下方新增圖片上傳 -->
                                 <div class="form-group">
                                     <label for="productImage">Product Image</label>
@@ -96,82 +96,82 @@
                             <div class="col">
                                 <!-- 選填欄位（右） -->
                                 <h4 class="mt-4">Additional Information</h4>
-                                <div class="form-group">
-                                    <label for="price">Price</label>
-                                    <input type="number" class="form-control" id="price">
-                                </div>
-                                <div class="form-group">
-                                    <label for="model">Model</label>
-                                    <input type="text" class="form-control" id="model">
-                                </div>
-                                <!-- 規格 -->
-                                <h5 class="mt-3">Specifications</h5>
-                                <div class="specifications-group">
-                                    <div class="form-group">
-                                        <label for="material">Material</label>
-                                        <input type="text" class="form-control" id="material">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="size">Size</label>
-                                        <input type="text" class="form-control" id="size">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="color">Color</label>
-                                        <input type="text" class="form-control" id="color">
-                                    </div>
-                                </div>
-                                <!-- 保固 -->
-                                <h5 class="mt-3">Warranty</h5>
-                                <div class="warranty-group">
-                                    <div class="form-group">
-                                        <label for="warrantyPeriod">Warranty Period</label>
-                                        <input type="text" class="form-control" id="warrantyPeriod">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="warrantyStartDate">Start Date</label>
-                                        <input type="date" class="form-control" id="warrantyStartDate">
-                                    </div>
-                                </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price">
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Model</label>
+                        <input type="text" class="form-control" id="model">
+                    </div>
+                    <!-- 規格 -->
+                    <h5 class="mt-3">Specifications</h5>
+                    <div class="specifications-group">
+                        <div class="form-group">
+                            <label for="material">Material</label>
+                            <input type="text" class="form-control" id="material">
+                        </div>
+                        <div class="form-group">
+                            <label for="size">Size</label>
+                            <input type="text" class="form-control" id="size">
+                        </div>
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <input type="text" class="form-control" id="color">
+                        </div>
+                    </div>
+                    <!-- 保固 -->
+                    <h5 class="mt-3">Warranty</h5>
+                    <div class="warranty-group">
+                        <div class="form-group">
+                            <label for="warrantyPeriod">Warranty Period</label>
+                            <input type="text" class="form-control" id="warrantyPeriod">
+                        </div>
+                        <div class="form-group">
+                            <label for="warrantyStartDate">Start Date</label>
+                            <input type="date" class="form-control" id="warrantyStartDate">
+                        </div>
+                    </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Register Product</button>
-                    </form>
+                    <button type="submit" class="btn btn-primary mt-3">Register Product</button>
+                </form>
                 </div>
             </div>
         </div>
         <div id="tabContentVerify" style="display:none">
             <!-- 產品驗證表單原本內容 -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h2>Verify Product</h2>
-                </div>
-                <div class="card-body">
-                    <form id="verifyForm">
-                        <div class="form-group">
-                            <label for="verifyProductId">Product ID</label>
-                            <input type="text" class="form-control" id="verifyProductId" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="verifyBrandId">Brand ID</label>
-                            <input type="text" class="form-control" id="verifyBrandId" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="verifySerialNumber">Serial Number</label>
-                            <input type="text" class="form-control" id="verifySerialNumber" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="verifySignature">Signature</label>
-                            <input type="text" class="form-control" id="verifySignature" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="verifyTagPublicKey">Tag Public Key</label>
-                            <input type="text" class="form-control" id="verifyTagPublicKey" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Verify Product</button>
-                    </form>
-                    <div id="verificationResult" class="verification-result"></div>
-                </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2>Verify Product</h2>
             </div>
+            <div class="card-body">
+                <form id="verifyForm">
+                    <div class="form-group">
+                        <label for="verifyProductId">Product ID</label>
+                        <input type="text" class="form-control" id="verifyProductId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="verifyBrandId">Brand ID</label>
+                        <input type="text" class="form-control" id="verifyBrandId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="verifySerialNumber">Serial Number</label>
+                        <input type="text" class="form-control" id="verifySerialNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="verifySignature">Signature</label>
+                        <input type="text" class="form-control" id="verifySignature" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="verifyTagPublicKey">Tag Public Key</label>
+                        <input type="text" class="form-control" id="verifyTagPublicKey" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Verify Product</button>
+                </form>
+                <div id="verificationResult" class="verification-result"></div>
+            </div>
+        </div>
         </div>
         <!-- API Logs Modal 保持不變 -->
         <div id="apiLogsModal" class="api-logs-modal d-none">

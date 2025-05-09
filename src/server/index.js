@@ -44,10 +44,16 @@ app.post('/api/products/ipfs', upload.any(), async (req, res) => {
             // 上傳圖片到 Pinata
             let pinataResult;
             try {
+                console.log('[Pinata] imageFile.path:', imageFile.path);
                 const readableStream = fs.createReadStream(imageFile.path);
-                pinataResult = await pinata.pinFileToIPFS(readableStream);
+                console.log('[Pinata] readableStream created:', !!readableStream);
+                pinataResult = await pinata.pinFileToIPFS(readableStream, {
+                    pinataMetadata: { name: imageFile.originalname }
+                });
+                console.log('[Pinata] pinataResult:', pinataResult);
                 imageUrl = `https://gateway.pinata.cloud/ipfs/${pinataResult.IpfsHash}`;
             } catch (err) {
+                console.error('[Pinata] upload error:', err);
                 // mock imageUrl
                 imageUrl = 'https://placehold.co/300x300?text=Mock+Image';
             }
@@ -131,6 +137,7 @@ const pinata = new pinataSDK({
     pinataApiKey: process.env.PINATA_API_KEY,
     pinataSecretApiKey: process.env.PINATA_API_SECRET
 });
+console.log('[Pinata] API Key present:', !!process.env.PINATA_API_KEY, 'Secret present:', !!process.env.PINATA_API_SECRET);
 
 // 初始化智能合約
 const contractAddress = "0xe391aDF6Df8075D198C37b7B0cAC8C82fc4cE2BC";
