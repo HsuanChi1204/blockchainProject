@@ -56,14 +56,23 @@ cd blockchainProject
 npm install
 ```
 
-3. Configure environment variables:
+3. Set up environment variables:
 ```bash
 cp .env.example .env
 ```
-Edit `.env` with your configuration:
-- Private key for blockchain transactions
-- Pinata API keys for IPFS
-- Other necessary credentials
+Fill in the following fields in `.env`:
+- `PRIVATE_KEY` — Your Metamask private key (for contract interaction)
+- `PINATA_API_KEY` — Your Pinata API key (for IPFS upload)
+- `PINATA_API_SECRET` — Your Pinata API secret
+- `CARDONA_RPC_URL` — Cardona zkEVM RPC URL (e.g. https://rpc.cardona.zkevm-rpc.com)
+
+4. Start the server:
+```bash
+node src/server/index.js
+```
+
+5. Open the frontend:
+- Open `src/client/index.html` in your browser (or deploy with a static server)
 
 ## Usage
 
