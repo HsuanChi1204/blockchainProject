@@ -13,21 +13,19 @@ This project implements a blockchain-based authentication system for luxury and 
 ## Demo & UI Screenshots
 
 ### Demo Video
-[![Demo Video](https://img.youtube.com/vi/placeholder/0.jpg)](assets/Demo.MOV)
+[[Demo Video]](assets/Demo.MOV)
 > Click to watch the demo (Demo.MOV)
 
 ### UI Screenshots
 
-#### Brand Registration UI
-![Brand Registration UI](assets/brandUI_register.png)
-
 #### Brand Creation UI
 ![Brand Creation UI](assets/brandUI_create.png)
 
+#### Brand Registration UI
+![Brand Registration UI](assets/brandUI_register.png)
+
 #### Product Validation UI
 ![Product Validation UI](assets/Validation.png)
-
----
 
 ## Problem Statement
 The global counterfeit market poses significant challenges for luxury goods authentication:
